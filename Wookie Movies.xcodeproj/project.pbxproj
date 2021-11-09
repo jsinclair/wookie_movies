@@ -14,11 +14,15 @@
 		AFC1CB22273B0122002B96E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1CB20273B0122002B96E3 /* Main.storyboard */; };
 		AFC1CB24273B0124002B96E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFC1CB23273B0124002B96E3 /* Assets.xcassets */; };
 		AFC1CB27273B0124002B96E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1CB25273B0124002B96E3 /* LaunchScreen.storyboard */; };
-		AFC1CB32273B0124002B96E3 /* WookieMoviesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1CB31273B0124002B96E3 /* WookieMoviesTests.swift */; };
 		AFC1CB3D273B0124002B96E3 /* WookieMoviesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1CB3C273B0124002B96E3 /* WookieMoviesUITests.swift */; };
 		AFC1CB4D273B066E002B96E3 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1CB4C273B066E002B96E3 /* Coordinator.swift */; };
 		AFC1CB51273B078F002B96E3 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1CB50273B078F002B96E3 /* MovieListViewController.swift */; };
 		AFC1CB53273B08EE002B96E3 /* MovieListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1CB52273B08EE002B96E3 /* MovieListCoordinator.swift */; };
+		AFC1CB56273B0E33002B96E3 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1CB55273B0E33002B96E3 /* Movie.swift */; };
+		AFC1CB58273B0FCE002B96E3 /* MovieListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1CB57273B0FCE002B96E3 /* MovieListViewModel.swift */; };
+		AFC1CB5A273B1472002B96E3 /* MovieListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1CB59273B1472002B96E3 /* MovieListViewModelTests.swift */; };
+		AFC1CB5C273B1826002B96E3 /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1CB5B273B1826002B96E3 /* APIModel.swift */; };
+		AFC1CB5E273B1910002B96E3 /* APIModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1CB5D273B1910002B96E3 /* APIModelTests.swift */; };
 		DC7DE1D2E4881A096FBAD7EC /* Pods_Wookie_MoviesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55988D0D3F73B4D5352A17FF /* Pods_Wookie_MoviesTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,7 +57,6 @@
 		AFC1CB26273B0124002B96E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AFC1CB28273B0124002B96E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AFC1CB2D273B0124002B96E3 /* Wookie MoviesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Wookie MoviesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AFC1CB31273B0124002B96E3 /* WookieMoviesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WookieMoviesTests.swift; sourceTree = "<group>"; };
 		AFC1CB33273B0124002B96E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AFC1CB38273B0124002B96E3 /* Wookie MoviesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Wookie MoviesUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFC1CB3C273B0124002B96E3 /* WookieMoviesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WookieMoviesUITests.swift; sourceTree = "<group>"; };
@@ -61,6 +64,11 @@
 		AFC1CB4C273B066E002B96E3 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		AFC1CB50273B078F002B96E3 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
 		AFC1CB52273B08EE002B96E3 /* MovieListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListCoordinator.swift; sourceTree = "<group>"; };
+		AFC1CB55273B0E33002B96E3 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		AFC1CB57273B0FCE002B96E3 /* MovieListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModel.swift; sourceTree = "<group>"; };
+		AFC1CB59273B1472002B96E3 /* MovieListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModelTests.swift; sourceTree = "<group>"; };
+		AFC1CB5B273B1826002B96E3 /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
+		AFC1CB5D273B1910002B96E3 /* APIModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModelTests.swift; sourceTree = "<group>"; };
 		B8C64541EDCF2E1985DC1446 /* Pods-Wookie Movies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wookie Movies.debug.xcconfig"; path = "Target Support Files/Pods-Wookie Movies/Pods-Wookie Movies.debug.xcconfig"; sourceTree = "<group>"; };
 		B9260F11D20FB32BD482344C /* Pods-Wookie Movies-Wookie MoviesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wookie Movies-Wookie MoviesUITests.release.xcconfig"; path = "Target Support Files/Pods-Wookie Movies-Wookie MoviesUITests/Pods-Wookie Movies-Wookie MoviesUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CFFC6381EBFB397446FEFC9C /* Pods-Wookie MoviesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wookie MoviesTests.release.xcconfig"; path = "Target Support Files/Pods-Wookie MoviesTests/Pods-Wookie MoviesTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -143,6 +151,7 @@
 		AFC1CB19273B0122002B96E3 /* Wookie Movies */ = {
 			isa = PBXGroup;
 			children = (
+				AFC1CB54273B0E26002B96E3 /* Models */,
 				AFC1CB4E273B070D002B96E3 /* ViewControllers */,
 				AFC1CB4B273B065B002B96E3 /* Coordinator */,
 				AFC1CB1A273B0122002B96E3 /* AppDelegate.swift */,
@@ -158,8 +167,9 @@
 		AFC1CB30273B0124002B96E3 /* Wookie MoviesTests */ = {
 			isa = PBXGroup;
 			children = (
-				AFC1CB31273B0124002B96E3 /* WookieMoviesTests.swift */,
 				AFC1CB33273B0124002B96E3 /* Info.plist */,
+				AFC1CB59273B1472002B96E3 /* MovieListViewModelTests.swift */,
+				AFC1CB5D273B1910002B96E3 /* APIModelTests.swift */,
 			);
 			path = "Wookie MoviesTests";
 			sourceTree = "<group>";
@@ -194,8 +204,18 @@
 			children = (
 				AFC1CB50273B078F002B96E3 /* MovieListViewController.swift */,
 				AFC1CB52273B08EE002B96E3 /* MovieListCoordinator.swift */,
+				AFC1CB57273B0FCE002B96E3 /* MovieListViewModel.swift */,
 			);
 			path = MovieListViewController;
+			sourceTree = "<group>";
+		};
+		AFC1CB54273B0E26002B96E3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AFC1CB55273B0E33002B96E3 /* Movie.swift */,
+				AFC1CB5B273B1826002B96E3 /* APIModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,6 +440,9 @@
 			files = (
 				AFC1CB4D273B066E002B96E3 /* Coordinator.swift in Sources */,
 				AFC1CB51273B078F002B96E3 /* MovieListViewController.swift in Sources */,
+				AFC1CB56273B0E33002B96E3 /* Movie.swift in Sources */,
+				AFC1CB58273B0FCE002B96E3 /* MovieListViewModel.swift in Sources */,
+				AFC1CB5C273B1826002B96E3 /* APIModel.swift in Sources */,
 				AFC1CB1B273B0122002B96E3 /* AppDelegate.swift in Sources */,
 				AFC1CB1D273B0122002B96E3 /* SceneDelegate.swift in Sources */,
 				AFC1CB53273B08EE002B96E3 /* MovieListCoordinator.swift in Sources */,
@@ -430,7 +453,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFC1CB32273B0124002B96E3 /* WookieMoviesTests.swift in Sources */,
+				AFC1CB5E273B1910002B96E3 /* APIModelTests.swift in Sources */,
+				AFC1CB5A273B1472002B96E3 /* MovieListViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

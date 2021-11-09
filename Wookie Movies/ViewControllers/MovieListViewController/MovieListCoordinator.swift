@@ -17,6 +17,7 @@ class MovieListCoordinator: Coordinator {
 
     func start() {
         let movieListViewController = MovieListViewController()
+        movieListViewController.viewModel = MovieListViewModel()
         movieListViewController.coordinator = self
         navigationController.pushViewController(movieListViewController, animated: false)
     }

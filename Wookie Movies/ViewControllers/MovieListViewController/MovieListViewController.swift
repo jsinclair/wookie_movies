@@ -9,6 +9,8 @@ import UIKit
 
 class MovieListViewController: UIViewController {
 
+    var viewModel: MovieListViewModel?
+
     weak var coordinator: MovieListCoordinator?
 
     override func viewDidLoad() {
