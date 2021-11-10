@@ -12,3 +12,9 @@ extension UITableViewCell {
         return String(describing: self)
     }
 }
+
+extension UICollectionViewCell {
+    class func identifier() -> String {
+        return String(describing: self)
+    }
+}

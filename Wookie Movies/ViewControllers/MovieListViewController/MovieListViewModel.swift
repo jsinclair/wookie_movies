@@ -39,19 +39,13 @@ class MovieListViewModel {
         genres.count
     }
 
-    func genre(at index: Int) -> String? {
-        guard index < genres.count, index >= 0 else {
+    func genre(at index: Int) -> GenreCellViewModel? {
+        guard index < genres.count,
+              index >= 0 else {
             return nil
         }
-        return genres.keys.sorted()[index]
-    }
-
-    func movies(for genre: String) -> Int? {
-        genres[genre]?.count
-    }
-
-    func movie(for genre: String, at index: Int) -> Movie? {
-        genres[genre]?[index]
+        let genre = genres.keys.sorted()[index]
+        return GenreCellViewModel(genre: genre, movies: genres[genre] ?? [])
     }
 
     private func handleLoadMoviesResult(data: Data?, response: URLResponse?, error: Error?) {

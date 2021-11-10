@@ -12,6 +12,11 @@ class MovieListViewController: UIViewController {
     /* UI Components */
     let tableView = UITableView()
     let tabBar = UITabBar()
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(loadMovies), for: .valueChanged)
+        return refreshControl
+    }()
 
     /* View model */
     var viewModel: MovieListViewModel?
@@ -55,6 +60,7 @@ class MovieListViewController: UIViewController {
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
         tableView.dataSource = self
+        tableView.refreshControl = refreshControl
         view.addSubview(tableView)
 
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
@@ -63,8 +69,10 @@ class MovieListViewController: UIViewController {
         tableView.bottomAnchor.constraint(equalTo: tabBar.topAnchor).isActive = true
     }
 
-    func loadMovies() {
-        //tableView.ind
+    @objc func loadMovies() {
+        // Display the refresh control
+        tableView.refreshControl = refreshControl
+        refreshControl.beginRefreshing()
         viewModel?.loadMovies()
     }
 }
@@ -75,7 +83,7 @@ extension MovieListViewController: UITableViewDataSource {
             return UITableViewCell()
         }
 
-        cell.genreLabel.text = viewModel?.genre(at: indexPath.row)
+        cell.viewModel = viewModel?.genre(at: indexPath.row)
         return cell
     }
 
@@ -87,6 +95,7 @@ extension MovieListViewController: UITableViewDataSource {
 extension MovieListViewController: MovieListViewModelDelegate {
     func moviesLoaded() {
         DispatchQueue.main.async {
+            self.refreshControl.endRefreshing()
             self.tableView.reloadData()
         }
     }
@@ -101,6 +110,7 @@ extension MovieListViewController: MovieListViewModelDelegate {
                                         self.loadMovies()
                                       }))
         DispatchQueue.main.async {
+            self.refreshControl.endRefreshing()
             self.present(alert, animated: true, completion: nil)
         }
     }
