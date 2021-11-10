@@ -66,19 +66,6 @@ class MovieListViewModel {
                                                             options: .allowFragments) as? [String: Any],
                let moviesJSON = json["movies"] as? [[String: Any]] {
 
-                for movieJSON in moviesJSON {
-                    let decoder = JSONDecoder()
-                    if let encodedJSON = try? JSONSerialization.data(withJSONObject: movieJSON,
-                                                                     options: .prettyPrinted) {
-
-                        do {
-                            let movie = try decoder.decode(Movie.self, from: encodedJSON)
-                        } catch {
-                            delegate?.loadErrorOccurred(error: "Invalid server respnse. Please try again.")
-                        }
-                    }
-                }
-
                 let decoder = JSONDecoder()
                 if let encodedJSON = try? JSONSerialization.data(withJSONObject: moviesJSON,
                                                                  options: .prettyPrinted) {

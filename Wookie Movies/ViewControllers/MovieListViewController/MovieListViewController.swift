@@ -9,8 +9,14 @@ import UIKit
 
 class MovieListViewController: UIViewController {
 
+    /* UI Components */
+    let tableView = UITableView()
+    let tabBar = UITabBar()
+
+    /* View model */
     var viewModel: MovieListViewModel?
 
+    /* Coordinator */
     weak var coordinator: MovieListCoordinator?
 
     override func viewDidLoad() {
@@ -21,12 +27,81 @@ class MovieListViewController: UIViewController {
 
         view.backgroundColor = .white
 
-        let label = UILabel()
-        label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Movie List View Controller"
-        view.addSubview(label)
-        label.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        label.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        // UI Setup
+        setupTabBar()
+        setupTableView()
+
+        // Load initial movies
+        loadMovies()
+    }
+
+    func setupTabBar() {
+        tabBar.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tabBar)
+
+        tabBar.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        tabBar.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        tabBar.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+
+        tabBar.items = [
+            UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0),
+            UITabBarItem(tabBarSystemItem: .search, tag: 1)
+        ]
+    }
+
+    func setupTableView() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(GenreCell.self, forCellReuseIdentifier: GenreCell.identifier())
+        tableView.allowsSelection = false
+        tableView.separatorStyle = .none
+        tableView.dataSource = self
+        view.addSubview(tableView)
+
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: tabBar.topAnchor).isActive = true
+    }
+
+    func loadMovies() {
+        //tableView.ind
+        viewModel?.loadMovies()
+    }
+}
+
+extension MovieListViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: GenreCell.identifier()) as? GenreCell else {
+            return UITableViewCell()
+        }
+
+        cell.genreLabel.text = viewModel?.genre(at: indexPath.row)
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel?.genreCount() ?? 0
+    }
+}
+
+extension MovieListViewController: MovieListViewModelDelegate {
+    func moviesLoaded() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+
+    func loadErrorOccurred(error description: String) {
+        let alert = UIAlertController(title: "Load Error",
+                                      message: description,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Retry",
+                                      style: .default,
+                                      handler: { _ in
+                                        self.loadMovies()
+                                      }))
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }
