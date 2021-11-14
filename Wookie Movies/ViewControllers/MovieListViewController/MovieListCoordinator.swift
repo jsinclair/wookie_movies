@@ -8,7 +8,6 @@
 import UIKit
 
 class MovieListCoordinator: Coordinator {
-    var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
 
     init(navigationController: UINavigationController) {
@@ -22,5 +21,11 @@ class MovieListCoordinator: Coordinator {
         movieListViewController.viewModel = movieListViewModel
         movieListViewController.coordinator = self
         navigationController.pushViewController(movieListViewController, animated: false)
+    }
+
+    func presentMovieDetails(_ movie: Movie) {
+        let movieDetailsCoordinator = MovieDetailsCoordinator(movie: movie,
+                                                              navigationController: navigationController)
+        movieDetailsCoordinator.start()
     }
 }

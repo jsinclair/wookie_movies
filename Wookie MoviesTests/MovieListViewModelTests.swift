@@ -34,7 +34,7 @@ class MovieListViewModelTests: XCTestCase {
 
         XCTAssertGreaterThan(viewModel.genreCount(), 0)
         for index in 0..<viewModel.genreCount() {
-            XCTAssertGreaterThan(viewModel.movies(for: viewModel.genre(at: index) ?? "") ?? 0, 0)
+            XCTAssertGreaterThan(viewModel.genre(at: index)?.movies.count ?? 0, 0)
         }
     }
 
@@ -53,7 +53,7 @@ class MovieListViewModelTests: XCTestCase {
 
         XCTAssertGreaterThan(viewModel.genreCount(), 0)
         for index in 0..<viewModel.genreCount() {
-            XCTAssertGreaterThan(viewModel.movies(for: viewModel.genre(at: index) ?? "") ?? 0, 0)
+            XCTAssertGreaterThan(viewModel.genre(at: index)?.movies.count ?? 0, 0)
         }
     }
 

@@ -9,6 +9,10 @@ import UIKit
 
 class MovieListViewController: UIViewController {
 
+    enum Tabs: Int {
+        case bookmarks, search
+    }
+
     /* UI Components */
     let tableView = UITableView()
     let tabBar = UITabBar()
@@ -30,7 +34,7 @@ class MovieListViewController: UIViewController {
         // Do any additional setup after loading the view.
         navigationItem.title = "WOOKIE MOVIES"
 
-        view.backgroundColor = .white
+        view.backgroundColor = Theme.viewControllerBackground
 
         // UI Setup
         setupTabBar()
@@ -49,9 +53,11 @@ class MovieListViewController: UIViewController {
         tabBar.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
 
         tabBar.items = [
-            UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0),
-            UITabBarItem(tabBarSystemItem: .search, tag: 1)
+            UITabBarItem(tabBarSystemItem: .bookmarks, tag: Tabs.bookmarks.rawValue),
+            UITabBarItem(tabBarSystemItem: .search, tag: Tabs.search.rawValue)
         ]
+
+        tabBar.delegate = self
     }
 
     func setupTableView() {
@@ -69,26 +75,44 @@ class MovieListViewController: UIViewController {
         tableView.bottomAnchor.constraint(equalTo: tabBar.topAnchor).isActive = true
     }
 
-    @objc func loadMovies() {
+    @objc func loadMovies(searchParam: String? = nil) {
         // Display the refresh control
         tableView.refreshControl = refreshControl
         refreshControl.beginRefreshing()
-        viewModel?.loadMovies()
+        viewModel?.loadMovies(searchParam: searchParam)
+    }
+}
+
+extension MovieListViewController: GenreCellViewModelDelegate {
+    func movieTapped(_ movie: Movie) {
+        coordinator?.presentMovieDetails(movie)
     }
 }
 
 extension MovieListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: GenreCell.identifier()) as? GenreCell else {
-            return UITableViewCell()
-        }
 
-        cell.viewModel = viewModel?.genre(at: indexPath.row)
-        return cell
+        guard let viewModel = viewModel else { return UITableViewCell() }
+
+        if viewModel.genreCount() == 0 {
+            let cell = UITableViewCell()
+            cell.textLabel?.text = "No movies found :("
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: GenreCell.identifier()) as? GenreCell else {
+                return UITableViewCell()
+            }
+
+            let cellViewModel = viewModel.genre(at: indexPath.row)
+            cellViewModel?.delegate = self
+            cell.viewModel = cellViewModel
+            return cell
+        }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.genreCount() ?? 0
+        guard let viewModel = viewModel else { return 0 }
+        return viewModel.genreCount() == 0 ? 1 : viewModel.genreCount()
     }
 }
 
@@ -113,5 +137,42 @@ extension MovieListViewController: MovieListViewModelDelegate {
             self.refreshControl.endRefreshing()
             self.present(alert, animated: true, completion: nil)
         }
+    }
+}
+
+extension MovieListViewController: UITabBarDelegate {
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        switch item.tag {
+        case Tabs.bookmarks.rawValue:
+            print("bookmarks")
+        case Tabs.search.rawValue:
+            presetSearchAlert()
+        default:
+            print("Your guess is as good as mine.")
+        }
+    }
+
+    private func presetSearchAlert() {
+        let alert = UIAlertController(title: "What are you looking for?", message: nil, preferredStyle: .alert)
+        alert.addTextField()
+        alert.textFields?[0].placeholder = "Enter your search term in here!"
+
+        let submitAction = UIAlertAction(title: "Search", style: .default) { [unowned alert] _ in
+            self.loadMovies(searchParam: alert.textFields![0].text)
+            self.clearTabSelection()
+        }
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            self.clearTabSelection()
+        })
+
+        alert.addAction(submitAction)
+        alert.addAction(cancelAction)
+
+        present(alert, animated: true)
+    }
+
+    private func clearTabSelection() {
+        tabBar.selectedItem = nil
     }
 }

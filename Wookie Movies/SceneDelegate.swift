@@ -13,6 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     lazy var navController: UINavigationController = {
         let navController = UINavigationController()
         navController.navigationBar.barStyle = .black
+        navController.navigationBar.tintColor = .white
         return navController
     }()
     lazy var movieListCoordinator: MovieListCoordinator = MovieListCoordinator(navigationController: navController)

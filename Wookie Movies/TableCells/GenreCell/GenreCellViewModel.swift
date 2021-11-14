@@ -7,9 +7,16 @@
 
 import UIKit
 
+protocol GenreCellViewModelDelegate: AnyObject {
+    func movieTapped(_ movie: Movie)
+}
+
 class GenreCellViewModel: NSObject {
     private let genre: String
-    private let movies: [Movie]
+    internal let movies: [Movie]
+
+    /* Delegate */
+    weak var delegate: GenreCellViewModelDelegate?
 
     init(genre: String, movies: [Movie]) {
         self.genre = genre
@@ -36,5 +43,18 @@ class GenreCellViewModel: NSObject {
         stackView.addArrangedSubview(imageView)
 
         imageView.downloaded(from: movie.poster)
+        imageView.isUserInteractionEnabled = true
+
+        imageView.addGestureRecognizer(MovieTapGestureRecognizer(movie: movie,
+                                                                 target: self,
+                                                                 action: #selector(movieTapped(sender:))))
+    }
+
+    @objc func movieTapped(sender: UIGestureRecognizer) {
+        guard let sender = sender as? MovieTapGestureRecognizer else {
+            return
+        }
+
+        delegate?.movieTapped(sender.movie)
     }
 }
