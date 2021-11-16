@@ -13,6 +13,7 @@ class GenreCell: UITableViewCell {
     private let imageHeight = CGFloat(120)
 
     /* UI Components */
+    private let contentSubView = UIView()
     let genreLabel = UILabel()
     private let scrollViewContainer = UIView()
     private let scrollView = UIScrollView()
@@ -28,6 +29,10 @@ class GenreCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
+        self.backgroundColor = .clear
+        contentView.backgroundColor = .clear
+
+        setupContentSubView()
         setupGenreLabel()
         setupScrollViewContainer()
         setupScrollView()
@@ -38,8 +43,24 @@ class GenreCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    private func setupContentSubView() {
+        contentView.addSubview(contentSubView)
+
+        contentSubView.translatesAutoresizingMaskIntoConstraints = false
+
+        contentSubView.backgroundColor = Theme.tableCellBackground
+        contentSubView.layer.cornerRadius = 5.0
+
+        NSLayoutConstraint.activate([
+            contentSubView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
+            contentSubView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            contentSubView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
+            contentSubView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding)
+        ])
+    }
+
     private func setupGenreLabel() {
-        contentView.addSubview(genreLabel)
+        contentSubView.addSubview(genreLabel)
 
         genreLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -47,22 +68,22 @@ class GenreCell: UITableViewCell {
         genreLabel.textColor = .black
 
         NSLayoutConstraint.activate([
-            genreLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            genreLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: padding),
-            genreLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding)
+            genreLabel.leadingAnchor.constraint(equalTo: contentSubView.leadingAnchor, constant: padding),
+            genreLabel.trailingAnchor.constraint(equalTo: contentSubView.trailingAnchor, constant: padding),
+            genreLabel.topAnchor.constraint(equalTo: contentSubView.topAnchor, constant: padding)
         ])
     }
 
     private func setupScrollViewContainer() {
-        contentView.addSubview(scrollViewContainer)
+        contentSubView.addSubview(scrollViewContainer)
 
         scrollViewContainer.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            scrollViewContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            scrollViewContainer.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            scrollViewContainer.leadingAnchor.constraint(equalTo: contentSubView.leadingAnchor, constant: padding),
+            scrollViewContainer.trailingAnchor.constraint(equalTo: contentSubView.trailingAnchor, constant: -padding),
             scrollViewContainer.topAnchor.constraint(equalTo: genreLabel.bottomAnchor, constant: padding),
-            scrollViewContainer.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding),
+            scrollViewContainer.bottomAnchor.constraint(equalTo: contentSubView.bottomAnchor, constant: -padding),
             moviesStackView.heightAnchor.constraint(equalToConstant: imageHeight)
         ])
     }

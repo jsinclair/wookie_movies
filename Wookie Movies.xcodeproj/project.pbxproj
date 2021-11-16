@@ -11,7 +11,6 @@
 		7ED99F8FBB8C5B0F29EC80FE /* Pods_Wookie_Movies_Wookie_MoviesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8708C9023B0E9233629C02 /* Pods_Wookie_Movies_Wookie_MoviesUITests.framework */; };
 		AFC1CB1B273B0122002B96E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1CB1A273B0122002B96E3 /* AppDelegate.swift */; };
 		AFC1CB1D273B0122002B96E3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1CB1C273B0122002B96E3 /* SceneDelegate.swift */; };
-		AFC1CB22273B0122002B96E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1CB20273B0122002B96E3 /* Main.storyboard */; };
 		AFC1CB24273B0124002B96E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFC1CB23273B0124002B96E3 /* Assets.xcassets */; };
 		AFC1CB27273B0124002B96E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1CB25273B0124002B96E3 /* LaunchScreen.storyboard */; };
 		AFC1CB3D273B0124002B96E3 /* WookieMoviesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1CB3C273B0124002B96E3 /* WookieMoviesUITests.swift */; };
@@ -66,7 +65,6 @@
 		AFC1CB17273B0122002B96E3 /* Wookie Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wookie Movies.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFC1CB1A273B0122002B96E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AFC1CB1C273B0122002B96E3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AFC1CB21273B0122002B96E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AFC1CB23273B0124002B96E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AFC1CB26273B0124002B96E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AFC1CB28273B0124002B96E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -188,7 +186,6 @@
 				AFC1CB4E273B070D002B96E3 /* ViewControllers */,
 				AFC1CB1A273B0122002B96E3 /* AppDelegate.swift */,
 				AFC1CB1C273B0122002B96E3 /* SceneDelegate.swift */,
-				AFC1CB20273B0122002B96E3 /* Main.storyboard */,
 				AFC1CB23273B0124002B96E3 /* Assets.xcassets */,
 				AFC1CB25273B0124002B96E3 /* LaunchScreen.storyboard */,
 				AFC1CB28273B0124002B96E3 /* Info.plist */,
@@ -427,7 +424,6 @@
 				AFC1CB27273B0124002B96E3 /* LaunchScreen.storyboard in Resources */,
 				AFC1CB24273B0124002B96E3 /* Assets.xcassets in Resources */,
 				AFC1CB8627444792002B96E3 /* empty_star.png in Resources */,
-				AFC1CB22273B0122002B96E3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,14 +590,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		AFC1CB20273B0122002B96E3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AFC1CB21273B0122002B96E3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		AFC1CB25273B0124002B96E3 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

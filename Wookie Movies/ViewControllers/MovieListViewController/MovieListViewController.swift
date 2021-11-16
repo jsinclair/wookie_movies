@@ -67,6 +67,7 @@ class MovieListViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.refreshControl = refreshControl
+        tableView.backgroundColor = .clear
         view.addSubview(tableView)
 
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
@@ -99,6 +100,7 @@ extension MovieListViewController: UITableViewDataSource {
 
         if viewModel.genreCount() == 0 {
             let cell = UITableViewCell()
+            cell.contentView.backgroundColor = Theme.tableCellBackground
             cell.textLabel?.text = viewModel.emptyListLabelString
             return cell
         } else {
