@@ -18,6 +18,8 @@ class MovieListViewModel {
 
     private var genres: [String: [Movie]] = [:]
 
+    private(set) var emptyListLabelString = "Loading movies..."
+
     func loadMovies(searchParam: String? = nil) {
         guard let url = APIModel.buildURL(with: searchParam) else {
             delegate?.loadErrorOccurred(error: "Error building URL.")
@@ -29,6 +31,7 @@ class MovieListViewModel {
         request.setValue(APIModel.bearerToken, forHTTPHeaderField: "Authorization")
 
         let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
+            self.emptyListLabelString = "No movies found :("
             self.handleLoadMoviesResult(data: data, response: response, error: error)
         }
 

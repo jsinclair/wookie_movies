@@ -61,4 +61,8 @@ class MovieDetailsViewModel {
     var overviewString: String {
         movie.overview
     }
+
+    var rating: Int {
+        Int(movie.imdbRating / 2)
+    }
 }

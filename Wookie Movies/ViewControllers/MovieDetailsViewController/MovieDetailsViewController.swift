@@ -29,6 +29,7 @@ class MovieDetailsViewController: UIViewController {
     let infoLabel = UILabel()
     let castLabel = UILabel()
     let overviewLabel = UILabel()
+    let ratingView = RatingView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,11 +48,12 @@ class MovieDetailsViewController: UIViewController {
         configureInfoLabel()
         configureCastLabel()
         configureOverviewLabel()
-
+        configureRatingView()
     }
 
     private func configureScrollView() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.bounces = false
         view.addSubview(scrollView)
 
         NSLayoutConstraint.activate([
@@ -169,6 +171,19 @@ class MovieDetailsViewController: UIViewController {
         ])
 
         overviewLabel.text = viewModel?.overviewString
+    }
+
+    private func configureRatingView() {
+        ratingView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(ratingView)
+
+        NSLayoutConstraint.activate([
+            ratingView.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: smallPadding),
+            ratingView.bottomAnchor.constraint(equalTo: posterImageView.bottomAnchor),
+            ratingView.heightAnchor.constraint(equalToConstant: 24.0)
+        ])
+
+        ratingView.set(rating: viewModel?.rating ?? 0)
     }
 
 }

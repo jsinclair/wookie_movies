@@ -18,7 +18,7 @@ class MovieListViewController: UIViewController {
     let tabBar = UITabBar()
     private lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(loadMovies), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         return refreshControl
     }()
 
@@ -75,9 +75,12 @@ class MovieListViewController: UIViewController {
         tableView.bottomAnchor.constraint(equalTo: tabBar.topAnchor).isActive = true
     }
 
-    @objc func loadMovies(searchParam: String? = nil) {
+    @objc func refresh() {
+        loadMovies()
+    }
+
+    func loadMovies(searchParam: String? = nil) {
         // Display the refresh control
-        tableView.refreshControl = refreshControl
         refreshControl.beginRefreshing()
         viewModel?.loadMovies(searchParam: searchParam)
     }
@@ -96,7 +99,7 @@ extension MovieListViewController: UITableViewDataSource {
 
         if viewModel.genreCount() == 0 {
             let cell = UITableViewCell()
-            cell.textLabel?.text = "No movies found :("
+            cell.textLabel?.text = viewModel.emptyListLabelString
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: GenreCell.identifier()) as? GenreCell else {
