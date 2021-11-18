@@ -14,8 +14,30 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WookieCinema.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZbM-c7-Wh3">
+                                <rect key="frame" x="62" y="253" width="290" height="290"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ZbM-c7-Wh3" secondAttribute="height" multiplier="1:1" id="OQX-6i-kNG"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wookie Movies!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sHC-kp-RvM">
+                                <rect key="frame" x="32" y="559" width="350" height="45.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.2192766964" green="0.48129493000000001" blue="0.145002991" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="sHC-kp-RvM" firstAttribute="top" secondItem="ZbM-c7-Wh3" secondAttribute="bottom" constant="16" id="9Pl-n9-JBb"/>
+                            <constraint firstItem="sHC-kp-RvM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="HrB-Ko-FPp"/>
+                            <constraint firstItem="ZbM-c7-Wh3" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-50" id="NUe-A3-AFO"/>
+                            <constraint firstItem="ZbM-c7-Wh3" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="OeQ-ws-1Yo"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="sHC-kp-RvM" secondAttribute="trailing" constant="32" id="W39-my-b5M"/>
+                            <constraint firstItem="ZbM-c7-Wh3" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.7" id="pft-yn-Son"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -23,4 +45,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="WookieCinema.png" width="245.75999450683594" height="245.75999450683594"/>
+    </resources>
 </document>

@@ -36,6 +36,7 @@
 		AFC1CB8527444792002B96E3 /* full_star.png in Resources */ = {isa = PBXBuildFile; fileRef = AFC1CB8327444792002B96E3 /* full_star.png */; };
 		AFC1CB8627444792002B96E3 /* empty_star.png in Resources */ = {isa = PBXBuildFile; fileRef = AFC1CB8427444792002B96E3 /* empty_star.png */; };
 		AFC1CB89274447D6002B96E3 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1CB88274447D6002B96E3 /* RatingView.swift */; };
+		AFC1CCF32746EFD4002B96E3 /* WookieCinema.png in Resources */ = {isa = PBXBuildFile; fileRef = AFC1CCF22746EFD3002B96E3 /* WookieCinema.png */; };
 		DC7DE1D2E4881A096FBAD7EC /* Pods_Wookie_MoviesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55988D0D3F73B4D5352A17FF /* Pods_Wookie_MoviesTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +96,7 @@
 		AFC1CB8327444792002B96E3 /* full_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = full_star.png; sourceTree = "<group>"; };
 		AFC1CB8427444792002B96E3 /* empty_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = empty_star.png; sourceTree = "<group>"; };
 		AFC1CB88274447D6002B96E3 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
+		AFC1CCF22746EFD3002B96E3 /* WookieCinema.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WookieCinema.png; sourceTree = "<group>"; };
 		B8C64541EDCF2E1985DC1446 /* Pods-Wookie Movies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wookie Movies.debug.xcconfig"; path = "Target Support Files/Pods-Wookie Movies/Pods-Wookie Movies.debug.xcconfig"; sourceTree = "<group>"; };
 		B9260F11D20FB32BD482344C /* Pods-Wookie Movies-Wookie MoviesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wookie Movies-Wookie MoviesUITests.release.xcconfig"; path = "Target Support Files/Pods-Wookie Movies-Wookie MoviesUITests/Pods-Wookie Movies-Wookie MoviesUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CFFC6381EBFB397446FEFC9C /* Pods-Wookie MoviesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wookie MoviesTests.release.xcconfig"; path = "Target Support Files/Pods-Wookie MoviesTests/Pods-Wookie MoviesTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 		AFC1CB8227444733002B96E3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AFC1CCF22746EFD3002B96E3 /* WookieCinema.png */,
 				AFC1CB8427444792002B96E3 /* empty_star.png */,
 				AFC1CB8327444792002B96E3 /* full_star.png */,
 			);
@@ -421,6 +424,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AFC1CB8527444792002B96E3 /* full_star.png in Resources */,
+				AFC1CCF32746EFD4002B96E3 /* WookieCinema.png in Resources */,
 				AFC1CB27273B0124002B96E3 /* LaunchScreen.storyboard in Resources */,
 				AFC1CB24273B0124002B96E3 /* Assets.xcassets in Resources */,
 				AFC1CB8627444792002B96E3 /* empty_star.png in Resources */,
