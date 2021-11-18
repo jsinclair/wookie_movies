@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Movie: Decodable {
+struct Movie: Codable {
     let backdrop: String
     let cast: [String]
     let classification: String

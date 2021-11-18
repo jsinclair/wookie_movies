@@ -53,6 +53,14 @@ class MovieDetailsViewModelTests: XCTestCase {
             throw MovieDecodeError.failure
         }
         viewModel = MovieDetailsViewModel(movie: movie)
+
+        // Clear movies for each fech
+        for movie in UserDefaultsModel.getInstance().movies(for: .favourite) {
+            UserDefaultsModel.getInstance().remove(movie: movie, for: .favourite)
+        }
+        for movie in UserDefaultsModel.getInstance().movies(for: .watched) {
+            UserDefaultsModel.getInstance().remove(movie: movie, for: .watched)
+        }
     }
 
     override func tearDownWithError() throws {
@@ -106,5 +114,25 @@ class MovieDetailsViewModelTests: XCTestCase {
 
     func testOverviewString() {
         XCTAssertEqual(viewModel.overviewString, testMovie?.overview)
+    }
+
+    func testTapFavourite() {
+        XCTAssertEqual(viewModel.favouriteButtonIsSelected, false)
+
+        XCTAssertEqual(viewModel.favouriteTapped(), true)
+        XCTAssertEqual(viewModel.favouriteButtonIsSelected, true)
+
+        XCTAssertEqual(viewModel.favouriteTapped(), false)
+        XCTAssertEqual(viewModel.favouriteButtonIsSelected, false)
+    }
+
+    func testTapWatched() {
+        XCTAssertEqual(viewModel.watchedButtonIsSelected, false)
+
+        XCTAssertEqual(viewModel.watchedTapped(), true)
+        XCTAssertEqual(viewModel.watchedButtonIsSelected, true)
+
+        XCTAssertEqual(viewModel.watchedTapped(), false)
+        XCTAssertEqual(viewModel.watchedButtonIsSelected, false)
     }
 }

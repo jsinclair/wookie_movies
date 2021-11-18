@@ -32,6 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
 
         let window = UIWindow(windowScene: windowScene)
+        window.tintColor = Theme.veryDarkGreen
         window.rootViewController = navController
         movieListCoordinator.start()
 

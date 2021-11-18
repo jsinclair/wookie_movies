@@ -37,6 +37,8 @@
 		AFC1CB8627444792002B96E3 /* empty_star.png in Resources */ = {isa = PBXBuildFile; fileRef = AFC1CB8427444792002B96E3 /* empty_star.png */; };
 		AFC1CB89274447D6002B96E3 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1CB88274447D6002B96E3 /* RatingView.swift */; };
 		AFC1CCF32746EFD4002B96E3 /* WookieCinema.png in Resources */ = {isa = PBXBuildFile; fileRef = AFC1CCF22746EFD3002B96E3 /* WookieCinema.png */; };
+		AFC1CCF92747003F002B96E3 /* UserDefaultsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1CCF82747003F002B96E3 /* UserDefaultsModel.swift */; };
+		AFC1CCFB274705D4002B96E3 /* UserDefaultsModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1CCFA274705D4002B96E3 /* UserDefaultsModelTests.swift */; };
 		DC7DE1D2E4881A096FBAD7EC /* Pods_Wookie_MoviesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55988D0D3F73B4D5352A17FF /* Pods_Wookie_MoviesTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +99,8 @@
 		AFC1CB8427444792002B96E3 /* empty_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = empty_star.png; sourceTree = "<group>"; };
 		AFC1CB88274447D6002B96E3 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		AFC1CCF22746EFD3002B96E3 /* WookieCinema.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WookieCinema.png; sourceTree = "<group>"; };
+		AFC1CCF82747003F002B96E3 /* UserDefaultsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsModel.swift; sourceTree = "<group>"; };
+		AFC1CCFA274705D4002B96E3 /* UserDefaultsModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsModelTests.swift; sourceTree = "<group>"; };
 		B8C64541EDCF2E1985DC1446 /* Pods-Wookie Movies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wookie Movies.debug.xcconfig"; path = "Target Support Files/Pods-Wookie Movies/Pods-Wookie Movies.debug.xcconfig"; sourceTree = "<group>"; };
 		B9260F11D20FB32BD482344C /* Pods-Wookie Movies-Wookie MoviesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wookie Movies-Wookie MoviesUITests.release.xcconfig"; path = "Target Support Files/Pods-Wookie Movies-Wookie MoviesUITests/Pods-Wookie Movies-Wookie MoviesUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CFFC6381EBFB397446FEFC9C /* Pods-Wookie MoviesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wookie MoviesTests.release.xcconfig"; path = "Target Support Files/Pods-Wookie MoviesTests/Pods-Wookie MoviesTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -202,6 +206,7 @@
 				AFC1CB59273B1472002B96E3 /* MovieListViewModelTests.swift */,
 				AFC1CB5D273B1910002B96E3 /* APIModelTests.swift */,
 				AFC1CB7D27419FC0002B96E3 /* MovieDetailsViewModelTests.swift */,
+				AFC1CCFA274705D4002B96E3 /* UserDefaultsModelTests.swift */,
 			);
 			path = "Wookie MoviesTests";
 			sourceTree = "<group>";
@@ -247,6 +252,7 @@
 			children = (
 				AFC1CB55273B0E33002B96E3 /* Movie.swift */,
 				AFC1CB5B273B1826002B96E3 /* APIModel.swift */,
+				AFC1CCF82747003F002B96E3 /* UserDefaultsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -556,6 +562,7 @@
 				AFC1CB1B273B0122002B96E3 /* AppDelegate.swift in Sources */,
 				AFC1CB1D273B0122002B96E3 /* SceneDelegate.swift in Sources */,
 				AFC1CB89274447D6002B96E3 /* RatingView.swift in Sources */,
+				AFC1CCF92747003F002B96E3 /* UserDefaultsModel.swift in Sources */,
 				AFC1CB53273B08EE002B96E3 /* MovieListCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -566,6 +573,7 @@
 			files = (
 				AFC1CB5E273B1910002B96E3 /* APIModelTests.swift in Sources */,
 				AFC1CB7E27419FC0002B96E3 /* MovieDetailsViewModelTests.swift in Sources */,
+				AFC1CCFB274705D4002B96E3 /* UserDefaultsModelTests.swift in Sources */,
 				AFC1CB5A273B1472002B96E3 /* MovieListViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

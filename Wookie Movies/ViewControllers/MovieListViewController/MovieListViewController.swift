@@ -10,10 +10,12 @@ import UIKit
 class MovieListViewController: UIViewController {
 
     enum Tabs: Int {
-        case bookmarks
+        case home, favourites, watched
     }
 
     /* UI Components */
+    let homeImage = UIImage(named: "home")
+    let glassesImage = UIImage(named: "glasses")
     let tableView = UITableView()
     let tabBar = UITabBar()
     private lazy var refreshControl: UIRefreshControl = {
@@ -57,10 +59,12 @@ class MovieListViewController: UIViewController {
 
         tabBar.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tabBar.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tabBar.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        tabBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
 
         tabBar.items = [
-            UITabBarItem(tabBarSystemItem: .bookmarks, tag: Tabs.bookmarks.rawValue)
+            UITabBarItem(title: "Home", image: homeImage, tag: Tabs.home.rawValue),
+            UITabBarItem(tabBarSystemItem: .favorites, tag: Tabs.favourites.rawValue),
+            UITabBarItem(title: "Watched", image: glassesImage, tag: Tabs.watched.rawValue)
         ]
 
         tabBar.delegate = self
@@ -171,8 +175,12 @@ extension MovieListViewController: MovieListViewModelDelegate {
 extension MovieListViewController: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         switch item.tag {
-        case Tabs.bookmarks.rawValue:
-            print("bookmarks")
+        case Tabs.home.rawValue:
+            print("home")
+        case Tabs.favourites.rawValue:
+            print("favourites")
+        case Tabs.watched.rawValue:
+            print("watched")
         default:
             print("Your guess is as good as mine.")
         }

@@ -30,6 +30,14 @@ class MovieDetailsViewController: UIViewController {
     let castLabel = UILabel()
     let overviewLabel = UILabel()
     let ratingView = RatingView()
+    let favouriteButton = UIButton()
+    let watchedButton = UIButton()
+
+    /* Button Images */
+    let glassesImage = UIImage(named: "glasses")
+    let glassesSelectedImage = UIImage(named: "glasses_filled")
+    let favouriteImage = UIImage(systemName: "star")
+    let favouriteSelectedImage = UIImage(systemName: "star.fill")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +57,8 @@ class MovieDetailsViewController: UIViewController {
         configureCastLabel()
         configureOverviewLabel()
         configureRatingView()
+        configureFavouriteButton()
+        configureWatchedButton()
     }
 
     private func configureScrollView() {
@@ -184,6 +194,50 @@ class MovieDetailsViewController: UIViewController {
         ])
 
         ratingView.set(rating: viewModel?.rating ?? 0)
+    }
+
+    private func configureFavouriteButton() {
+        favouriteButton.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(favouriteButton)
+
+        NSLayoutConstraint.activate([
+            favouriteButton.topAnchor.constraint(equalTo: backdropImageView.bottomAnchor, constant: smallPadding),
+            favouriteButton.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: smallPadding),
+            favouriteButton.bottomAnchor.constraint(equalTo: ratingView.topAnchor, constant: -smallPadding),
+            favouriteButton.widthAnchor.constraint(equalTo: favouriteButton.heightAnchor)
+        ])
+
+        favouriteButton.setImage(favouriteImage, for: .normal)
+        favouriteButton.setImage(favouriteSelectedImage, for: .selected)
+
+        favouriteButton.addTarget(self, action: #selector(favouritePressed), for: .touchUpInside)
+        favouriteButton.isSelected = viewModel?.favouriteButtonIsSelected ?? false
+    }
+
+    private func configureWatchedButton() {
+        watchedButton.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(watchedButton)
+
+        NSLayoutConstraint.activate([
+            watchedButton.topAnchor.constraint(equalTo: backdropImageView.bottomAnchor, constant: smallPadding),
+            watchedButton.leadingAnchor.constraint(equalTo: favouriteButton.trailingAnchor, constant: bigPadding),
+            watchedButton.bottomAnchor.constraint(equalTo: ratingView.topAnchor, constant: -smallPadding),
+            watchedButton.widthAnchor.constraint(equalTo: watchedButton.heightAnchor)
+        ])
+
+        watchedButton.setImage(glassesImage, for: .normal)
+        watchedButton.setImage(glassesSelectedImage, for: .selected)
+
+        watchedButton.addTarget(self, action: #selector(watchedPressed), for: .touchUpInside)
+        watchedButton.isSelected = viewModel?.watchedButtonIsSelected ?? false
+    }
+
+    @objc func favouritePressed() {
+        favouriteButton.isSelected = viewModel?.favouriteTapped() ?? false
+    }
+
+    @objc func watchedPressed() {
+        watchedButton.isSelected = viewModel?.watchedTapped() ?? false
     }
 
 }

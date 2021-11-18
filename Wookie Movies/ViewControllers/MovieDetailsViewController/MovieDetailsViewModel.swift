@@ -6,10 +6,13 @@
 //
 
 import Foundation
+import UIKit
 
 class MovieDetailsViewModel {
     let movie: Movie
     let dateFormatter: DateFormatter
+
+    lazy var userDefaultsModel = UserDefaultsModel.getInstance()
 
     init(movie: Movie) {
         self.movie = movie
@@ -64,5 +67,35 @@ class MovieDetailsViewModel {
 
     var rating: Int {
         Int(movie.imdbRating / 2)
+    }
+
+    var favouriteButtonIsSelected: Bool {
+        return movieSaved(for: .favourite)
+    }
+
+    var watchedButtonIsSelected: Bool {
+        return movieSaved(for: .watched)
+    }
+
+    func favouriteTapped() -> Bool {
+        return addOrRemoveMovie(for: .favourite)
+    }
+
+    func watchedTapped() -> Bool {
+        return addOrRemoveMovie(for: .watched)
+    }
+
+    private func addOrRemoveMovie(for key: UserDefaultsKeys) -> Bool {
+        if movieSaved(for: key) {
+            userDefaultsModel.remove(movie: movie, for: key)
+            return false
+        } else {
+            userDefaultsModel.add(movie: movie, for: key)
+            return true
+        }
+    }
+
+    private func movieSaved(for key: UserDefaultsKeys) -> Bool {
+        return userDefaultsModel.movies(for: key).contains(where: { $0.id == movie.id })
     }
 }
