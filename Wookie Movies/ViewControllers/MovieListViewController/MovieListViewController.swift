@@ -10,7 +10,7 @@ import UIKit
 class MovieListViewController: UIViewController {
 
     enum Tabs: Int {
-        case bookmarks, search
+        case bookmarks
     }
 
     /* UI Components */
@@ -37,6 +37,7 @@ class MovieListViewController: UIViewController {
         view.backgroundColor = Theme.viewControllerBackground
 
         // UI Setup
+        setupSearchButton()
         setupTabBar()
         setupTableView()
 
@@ -44,7 +45,13 @@ class MovieListViewController: UIViewController {
         loadMovies()
     }
 
-    func setupTabBar() {
+    private func setupSearchButton() {
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(presetSearchAlert))
+        ]
+    }
+
+    private func setupTabBar() {
         tabBar.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tabBar)
 
@@ -53,14 +60,13 @@ class MovieListViewController: UIViewController {
         tabBar.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
 
         tabBar.items = [
-            UITabBarItem(tabBarSystemItem: .bookmarks, tag: Tabs.bookmarks.rawValue),
-            UITabBarItem(tabBarSystemItem: .search, tag: Tabs.search.rawValue)
+            UITabBarItem(tabBarSystemItem: .bookmarks, tag: Tabs.bookmarks.rawValue)
         ]
 
         tabBar.delegate = self
     }
 
-    func setupTableView() {
+    private func setupTableView() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(GenreCell.self, forCellReuseIdentifier: GenreCell.identifier())
         tableView.allowsSelection = false
@@ -84,6 +90,23 @@ class MovieListViewController: UIViewController {
         // Display the refresh control
         refreshControl.beginRefreshing()
         viewModel?.loadMovies(searchParam: searchParam)
+    }
+
+    @objc func presetSearchAlert() {
+        let alert = UIAlertController(title: "What are you looking for?", message: nil, preferredStyle: .alert)
+        alert.addTextField()
+        alert.textFields?[0].placeholder = "Enter your search term in here!"
+
+        let submitAction = UIAlertAction(title: "Search", style: .default) { [unowned alert] _ in
+            self.loadMovies(searchParam: alert.textFields![0].text)
+        }
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+
+        alert.addAction(submitAction)
+        alert.addAction(cancelAction)
+
+        present(alert, animated: true)
     }
 }
 
@@ -150,34 +173,8 @@ extension MovieListViewController: UITabBarDelegate {
         switch item.tag {
         case Tabs.bookmarks.rawValue:
             print("bookmarks")
-        case Tabs.search.rawValue:
-            presetSearchAlert()
         default:
             print("Your guess is as good as mine.")
         }
-    }
-
-    private func presetSearchAlert() {
-        let alert = UIAlertController(title: "What are you looking for?", message: nil, preferredStyle: .alert)
-        alert.addTextField()
-        alert.textFields?[0].placeholder = "Enter your search term in here!"
-
-        let submitAction = UIAlertAction(title: "Search", style: .default) { [unowned alert] _ in
-            self.loadMovies(searchParam: alert.textFields![0].text)
-            self.clearTabSelection()
-        }
-
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-            self.clearTabSelection()
-        })
-
-        alert.addAction(submitAction)
-        alert.addAction(cancelAction)
-
-        present(alert, animated: true)
-    }
-
-    private func clearTabSelection() {
-        tabBar.selectedItem = nil
     }
 }
