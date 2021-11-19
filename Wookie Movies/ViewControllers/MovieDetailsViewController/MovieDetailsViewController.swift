@@ -36,8 +36,8 @@ class MovieDetailsViewController: UIViewController {
     /* Button Images */
     let glassesImage = UIImage(named: "glasses")
     let glassesSelectedImage = UIImage(named: "glasses_filled")
-    let favouriteImage = UIImage(systemName: "star")
-    let favouriteSelectedImage = UIImage(systemName: "star.fill")
+    let favouriteImage = UIImage(systemName: "heart")
+    let favouriteSelectedImage = UIImage(systemName: "heart.fill")
 
     override func viewDidLoad() {
         super.viewDidLoad()

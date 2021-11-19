@@ -16,6 +16,7 @@ class MovieListViewController: UIViewController {
     /* UI Components */
     let homeImage = UIImage(named: "home")
     let glassesImage = UIImage(named: "glasses")
+    let favouritesImage = UIImage(systemName: "heart")
     let tableView = UITableView()
     let tabBar = UITabBar()
     private lazy var refreshControl: UIRefreshControl = {
@@ -63,7 +64,7 @@ class MovieListViewController: UIViewController {
 
         tabBar.items = [
             UITabBarItem(title: "Home", image: homeImage, tag: Tabs.home.rawValue),
-            UITabBarItem(tabBarSystemItem: .favorites, tag: Tabs.favourites.rawValue),
+            UITabBarItem(title: "Favourites", image: favouritesImage, tag: Tabs.favourites.rawValue),
             UITabBarItem(title: "Watched", image: glassesImage, tag: Tabs.watched.rawValue)
         ]
 
