@@ -55,7 +55,7 @@ class GenreCell: UITableViewCell {
             contentSubView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
             contentSubView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
             contentSubView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
-            contentSubView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding)
+            contentSubView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
 

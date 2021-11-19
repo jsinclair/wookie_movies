@@ -39,6 +39,9 @@
 		AFC1CCF32746EFD4002B96E3 /* WookieCinema.png in Resources */ = {isa = PBXBuildFile; fileRef = AFC1CCF22746EFD3002B96E3 /* WookieCinema.png */; };
 		AFC1CCF92747003F002B96E3 /* UserDefaultsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1CCF82747003F002B96E3 /* UserDefaultsModel.swift */; };
 		AFC1CCFB274705D4002B96E3 /* UserDefaultsModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1CCFA274705D4002B96E3 /* UserDefaultsModelTests.swift */; };
+		AFC1CCFE2748310E002B96E3 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1CCFD2748310E002B96E3 /* DataSource.swift */; };
+		AFC1CD0027483317002B96E3 /* WebDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1CCFF27483317002B96E3 /* WebDataSource.swift */; };
+		AFC1CD0227483B01002B96E3 /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1CD0127483B01002B96E3 /* LocalDataSource.swift */; };
 		DC7DE1D2E4881A096FBAD7EC /* Pods_Wookie_MoviesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55988D0D3F73B4D5352A17FF /* Pods_Wookie_MoviesTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +104,9 @@
 		AFC1CCF22746EFD3002B96E3 /* WookieCinema.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WookieCinema.png; sourceTree = "<group>"; };
 		AFC1CCF82747003F002B96E3 /* UserDefaultsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsModel.swift; sourceTree = "<group>"; };
 		AFC1CCFA274705D4002B96E3 /* UserDefaultsModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsModelTests.swift; sourceTree = "<group>"; };
+		AFC1CCFD2748310E002B96E3 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		AFC1CCFF27483317002B96E3 /* WebDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebDataSource.swift; sourceTree = "<group>"; };
+		AFC1CD0127483B01002B96E3 /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
 		B8C64541EDCF2E1985DC1446 /* Pods-Wookie Movies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wookie Movies.debug.xcconfig"; path = "Target Support Files/Pods-Wookie Movies/Pods-Wookie Movies.debug.xcconfig"; sourceTree = "<group>"; };
 		B9260F11D20FB32BD482344C /* Pods-Wookie Movies-Wookie MoviesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wookie Movies-Wookie MoviesUITests.release.xcconfig"; path = "Target Support Files/Pods-Wookie Movies-Wookie MoviesUITests/Pods-Wookie Movies-Wookie MoviesUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CFFC6381EBFB397446FEFC9C /* Pods-Wookie MoviesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wookie MoviesTests.release.xcconfig"; path = "Target Support Files/Pods-Wookie MoviesTests/Pods-Wookie MoviesTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -184,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				AFC1CB4B273B065B002B96E3 /* Coordinator */,
+				AFC1CCFC274830F9002B96E3 /* DataSource */,
 				AFC1CB54273B0E26002B96E3 /* Models */,
 				AFC1CB8227444733002B96E3 /* Resources */,
 				AFC1CB7A2741956D002B96E3 /* Theme */,
@@ -320,6 +327,16 @@
 				AFC1CB88274447D6002B96E3 /* RatingView.swift */,
 			);
 			path = UIComponents;
+			sourceTree = "<group>";
+		};
+		AFC1CCFC274830F9002B96E3 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				AFC1CCFD2748310E002B96E3 /* DataSource.swift */,
+				AFC1CCFF27483317002B96E3 /* WebDataSource.swift */,
+				AFC1CD0127483B01002B96E3 /* LocalDataSource.swift */,
+			);
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -544,6 +561,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFC1CCFE2748310E002B96E3 /* DataSource.swift in Sources */,
 				AFC1CB7527418EF1002B96E3 /* MovieDetailsCoordinator.swift in Sources */,
 				AFC1CB4D273B066E002B96E3 /* Coordinator.swift in Sources */,
 				AFC1CB64273C5AF9002B96E3 /* UITableViewCell+Extension.swift in Sources */,
@@ -552,6 +570,7 @@
 				AFC1CB67273C614D002B96E3 /* GenreCellViewModel.swift in Sources */,
 				AFC1CB56273B0E33002B96E3 /* Movie.swift in Sources */,
 				AFC1CB58273B0FCE002B96E3 /* MovieListViewModel.swift in Sources */,
+				AFC1CD0027483317002B96E3 /* WebDataSource.swift in Sources */,
 				AFC1CB7727418F4D002B96E3 /* MovieDetailsViewModel.swift in Sources */,
 				AFC1CB7C27419579002B96E3 /* Theme.swift in Sources */,
 				AFC1CB5C273B1826002B96E3 /* APIModel.swift in Sources */,
@@ -559,6 +578,7 @@
 				AFC1CB61273C5851002B96E3 /* GenreCell.swift in Sources */,
 				AFC1CB6E273C6615002B96E3 /* UIImageView+DownloadExtension.swift in Sources */,
 				AFC1CB7327418ED2002B96E3 /* MovieDetailsViewController.swift in Sources */,
+				AFC1CD0227483B01002B96E3 /* LocalDataSource.swift in Sources */,
 				AFC1CB1B273B0122002B96E3 /* AppDelegate.swift in Sources */,
 				AFC1CB1D273B0122002B96E3 /* SceneDelegate.swift in Sources */,
 				AFC1CB89274447D6002B96E3 /* RatingView.swift in Sources */,

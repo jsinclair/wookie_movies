@@ -20,22 +20,35 @@ class MovieListViewModel {
 
     private(set) var emptyListLabelString = "Loading movies..."
 
-    func loadMovies(searchParam: String? = nil) {
-        guard let url = APIModel.buildURL(with: searchParam) else {
-            delegate?.loadErrorOccurred(error: "Error building URL.")
+    /* Data sources */
+    private lazy var webDataSource: WebDataSource = {
+        let dataSource = WebDataSource()
+        dataSource.delegate = self
+        return dataSource
+    }()
+    private lazy var favouritesDataSource: LocalDataSource = {
+        let dataSource = LocalDataSource(userDefualtsListKey: .favourite)
+        dataSource.delegate = self
+        return dataSource
+    }()
+    private lazy var watchedDataSource: LocalDataSource = {
+        let dataSource = LocalDataSource(userDefualtsListKey: .watched)
+        dataSource.delegate = self
+        return dataSource
+    }()
+
+    private lazy var dataSources: [Int: DataSource] = [
+        MovieListViewController.Tabs.home.rawValue: webDataSource,
+        MovieListViewController.Tabs.favourites.rawValue: favouritesDataSource,
+        MovieListViewController.Tabs.watched.rawValue: watchedDataSource
+    ]
+
+    func loadMovies(for tab: Int, with searchParam: String? = nil) {
+        guard let dataSource = dataSources[tab] else {
+            delegate?.loadErrorOccurred(error: "Invalid search type.")
             return
         }
-
-        var request = URLRequest(url: url)
-        // request.httpMethod = "GET"
-        request.setValue(APIModel.bearerToken, forHTTPHeaderField: "Authorization")
-
-        let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
-            self.emptyListLabelString = "No movies found :("
-            self.handleLoadMoviesResult(data: data, response: response, error: error)
-        }
-
-        task.resume()
+        dataSource.loadMovies(searchParam: searchParam)
     }
 
     func genreCount() -> Int {
@@ -51,38 +64,6 @@ class MovieListViewModel {
         return GenreCellViewModel(genre: genre, movies: genres[genre] ?? [])
     }
 
-    private func handleLoadMoviesResult(data: Data?, response: URLResponse?, error: Error?) {
-        if let error = error {
-            delegate?.loadErrorOccurred(error: error.localizedDescription)
-        } else if let response = response as? HTTPURLResponse, response.statusCode != 200 {
-            delegate?.loadErrorOccurred(error: "Unexpected server respnse. Please try again.")
-        } else {
-
-            if let data = data,
-               let json = try? JSONSerialization.jsonObject(with: data,
-                                                            options: .allowFragments) as? [String: Any],
-               let moviesJSON = json["movies"] as? [[String: Any]] {
-
-                let decoder = JSONDecoder()
-                if let encodedJSON = try? JSONSerialization.data(withJSONObject: moviesJSON,
-                                                                 options: .prettyPrinted) {
-
-                    do {
-                        let movies = try decoder.decode([Movie].self, from: encodedJSON)
-                        self.populateGenres(movies: movies)
-                        delegate?.moviesLoaded()
-                    } catch {
-                        delegate?.loadErrorOccurred(error: "Invalid server respnse. Please try again.")
-                    }
-                } else {
-                    delegate?.loadErrorOccurred(error: "Invalid server respnse. Please try again.")
-                }
-            } else {
-                delegate?.loadErrorOccurred(error: "Invalid server respnse. Please try again.")
-            }
-        }
-    }
-
     private func populateGenres(movies: [Movie]) {
         // clear current movies and genres
         genres.removeAll()
@@ -93,6 +74,20 @@ class MovieListViewModel {
                 currentMovies.append(movie)
                 genres[genre] = currentMovies
             }
+        }
+    }
+}
+
+extension MovieListViewModel: DataSourceDelegate {
+    func loaded(movies: [Movie], with error: String?) {
+        populateGenres(movies: movies)
+
+        emptyListLabelString = "No movies found :("
+
+        if let error = error {
+            delegate?.loadErrorOccurred(error: error)
+        } else {
+            delegate?.moviesLoaded()
         }
     }
 }

@@ -22,7 +22,7 @@ class APIModel {
             return nil
         }
 
-        if let searchParam = searchParam {
+        if let searchParam = searchParam, searchParam.count > 0 {
             url.queryItems = [
                 URLQueryItem(name: "q", value: searchParam)
             ]

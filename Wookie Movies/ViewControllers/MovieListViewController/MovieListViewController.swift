@@ -13,6 +13,9 @@ class MovieListViewController: UIViewController {
         case home, favourites, watched
     }
 
+    /* Layout */
+    private let padding = CGFloat(8)
+
     /* UI Components */
     let homeImage = UIImage(named: "home")
     let glassesImage = UIImage(named: "glasses")
@@ -58,9 +61,11 @@ class MovieListViewController: UIViewController {
         tabBar.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tabBar)
 
-        tabBar.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tabBar.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tabBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            tabBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tabBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tabBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
 
         tabBar.items = [
             UITabBarItem(title: "Home", image: homeImage, tag: Tabs.home.rawValue),
@@ -68,6 +73,7 @@ class MovieListViewController: UIViewController {
             UITabBarItem(title: "Watched", image: glassesImage, tag: Tabs.watched.rawValue)
         ]
 
+        tabBar.selectedItem = tabBar.items![0]
         tabBar.delegate = self
     }
 
@@ -81,10 +87,12 @@ class MovieListViewController: UIViewController {
         tableView.backgroundColor = .clear
         view.addSubview(tableView)
 
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: tabBar.topAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: tabBar.topAnchor)
+        ])
     }
 
     @objc func refresh() {
@@ -94,7 +102,7 @@ class MovieListViewController: UIViewController {
     func loadMovies(searchParam: String? = nil) {
         // Display the refresh control
         refreshControl.beginRefreshing()
-        viewModel?.loadMovies(searchParam: searchParam)
+        viewModel?.loadMovies(for: tabBar.selectedItem?.tag ?? 0, with: searchParam)
     }
 
     @objc func presetSearchAlert() {
@@ -154,6 +162,9 @@ extension MovieListViewController: MovieListViewModelDelegate {
         DispatchQueue.main.async {
             self.refreshControl.endRefreshing()
             self.tableView.reloadData()
+            self.tableView.scrollToRow(at: IndexPath(item: 0, section: 0),
+                                       at: .top,
+                                       animated: true)
         }
     }
 
@@ -175,15 +186,6 @@ extension MovieListViewController: MovieListViewModelDelegate {
 
 extension MovieListViewController: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        switch item.tag {
-        case Tabs.home.rawValue:
-            print("home")
-        case Tabs.favourites.rawValue:
-            print("favourites")
-        case Tabs.watched.rawValue:
-            print("watched")
-        default:
-            print("Your guess is as good as mine.")
-        }
+        loadMovies()
     }
 }

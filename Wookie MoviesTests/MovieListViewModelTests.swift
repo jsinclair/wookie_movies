@@ -29,7 +29,7 @@ class MovieListViewModelTests: XCTestCase {
         let testDelegate = LoadMoviesTestDelegate(expectation: self.expectation(description: "LoadAllMovies"))
         viewModel.delegate = testDelegate
 
-        viewModel.loadMovies()
+        viewModel.loadMovies(for: 0)
         waitForExpectations(timeout: 5, handler: nil)
 
         XCTAssertGreaterThan(viewModel.genreCount(), 0)
@@ -48,7 +48,7 @@ class MovieListViewModelTests: XCTestCase {
             expectation: self.expectation(description: "LoadMoviesWithSearchParam"))
         viewModel.delegate = testDelegate
 
-        viewModel.loadMovies(searchParam: "Crime")
+        viewModel.loadMovies(for: 0, with: "Crime")
         waitForExpectations(timeout: 5, handler: nil)
 
         XCTAssertGreaterThan(viewModel.genreCount(), 0)
